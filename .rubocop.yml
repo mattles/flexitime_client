@@ -1,0 +1,19 @@
+AllCops:
+Style/StringLiterals:
+  Enabled: false
+
+
+Style/Documentation:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/SignalException:
+  EnforcedStyle: only_raise

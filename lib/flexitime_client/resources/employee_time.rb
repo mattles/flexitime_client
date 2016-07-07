@@ -6,11 +6,11 @@ module FlexitimeClient
       end
 
       def start_time=(string_value)
-        @start_time = parse_date(string: string_value)
+        @start_time = DateTime.parse(string_value + "NZT")
       end
       
       def end_time=(string_value)
-        @end_time = parse_date(string: string_value)
+        @end_time = DateTime.parse(string_value + "NZT") 
       end
 
       attr_reader :start_time, :end_time

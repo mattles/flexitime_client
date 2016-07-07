@@ -13,9 +13,6 @@ module FlexitimeClient
         attr.each { |key,value | self.send("#{key}=", value)  }
       end
 
-      def parse_date(string:)
-        DateTime.strptime(string, "%Y%m%d")
-      end
 
       private
 

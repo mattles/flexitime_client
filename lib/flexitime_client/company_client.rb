@@ -24,11 +24,19 @@ module FlexitimeClient
         to_date: to_date.strftime("%Y%m%d")
 
       })
-      json_responce = http_client.get(resource_request: request)
-      attributes = JSON.parse(json_responce)
+      response = http_client.get(resource_request: request)
+      attributes = parse_response(response: response) 
       attributes.map { |a| Resources::EmployeeTime.new(attributes: a) }
     end
 
+
     attr_reader :company_authorisation, :http_client
+
+    private 
+
+    def parse_response(response:)
+      return [] if response.code == 404
+      JSON.parse(response.body)
+    end
   end
 end

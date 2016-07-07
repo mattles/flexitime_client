@@ -12,8 +12,8 @@ module FlexitimeClient
 
     def employees
       request = ResourceRequest.new(resource: Resources::Employee)
-      json_responce = http_client.get(resource_request: request)
-      attributes = JSON.parse(json_responce)
+      response = http_client.get(resource_request: request)
+      attributes = parse_response(response: response) 
       attributes.map { |a| Resources::Employee.new(attributes: a) }
     end
 
@@ -29,10 +29,9 @@ module FlexitimeClient
       attributes.map { |a| Resources::EmployeeTime.new(attributes: a) }
     end
 
-
     attr_reader :company_authorisation, :http_client
 
-    private 
+    private
 
     def parse_response(response:)
       return [] if response.code == 404

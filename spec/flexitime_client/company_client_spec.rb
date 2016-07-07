@@ -40,12 +40,15 @@ module FlexitimeClient
     end
 
     describe "#employees" do
-      it "returns an array on employee resources" do
-        json_response = [ { first_name: "matt" } ].to_json
-        http_client_double = instance_double(HttpClient, get: json_response)
-        allow(HttpClient).to receive(:new) { http_client_double }
-        company_client = CompanyClient.new(company_code: "code", access_key:"12345")
-        expect(company_client.employees).to include(a_kind_of(Resources::Employee))
+      context "when the response is success" do
+        it "returns an array on employee resources" do
+          json_response = [ { first_name: "matt" } ].to_json
+          response = double("Response", code: 200, body: json_response)
+          http_client_double = instance_double(HttpClient, get: response)
+          allow(HttpClient).to receive(:new) { http_client_double }
+          company_client = CompanyClient.new(company_code: "code", access_key:"12345")
+          expect(company_client.employees).to include(a_kind_of(Resources::Employee))
+        end
       end
     end
   end

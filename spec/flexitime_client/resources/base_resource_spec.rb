@@ -4,7 +4,7 @@ module FlexitimeClient
   module Resources
     describe BaseResource do
       class DummyResource < BaseResource
-        attr_accessor :first_name, :last_name
+        attr_accessor :first_name, :last_name, :start_time
       end
 
       describe "#initialize" do

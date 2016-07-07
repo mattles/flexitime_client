@@ -3,8 +3,8 @@ require 'spec_helper'
 module FlexitimeClient
   describe HttpClient do
     describe "#get" do
-      it "returns the responce body" do
-        body = "THe response body"
+      it "returns the response" do
+        reposnce = body = "THe response body"
         stub_request(:get, "https://api.flexitime.co.nz/employee.json")
           .to_return(body: body, status: 200)
         company_auth = CompanyAuthorisation.new(
@@ -13,7 +13,7 @@ module FlexitimeClient
         )
         http_client = HttpClient.new(authorisation: company_auth)
         resource_double = double("Resource", path_with_params: "/employee.json")
-        expect(http_client.get(resource_request: resource_double)).to eq(body)
+        expect(http_client.get(resource_request: resource_double)).to be_a(Net::HTTPOK)
       end
 
       it "correclty call the flexitime api" do

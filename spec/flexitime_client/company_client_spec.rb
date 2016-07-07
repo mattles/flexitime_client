@@ -16,7 +16,7 @@ module FlexitimeClient
     describe "#employee_times" do
       context "when repsonse returns 404 not found" do
         it "returns an empty array" do
-          response = double("Response", code: 404, body:  "{  }")
+          response = double("Response", code: "404", body:  "{  }")
           http_client_double = instance_double(HttpClient, get: response)
           allow(HttpClient).to receive(:new) { http_client_double }
           company_client = CompanyClient.new(company_code: nil, access_key: nil)
@@ -30,7 +30,7 @@ module FlexitimeClient
       context "when repsonse returns success" do
         it "returns an array on employee time resources" do
           json_response = [ { start_time: DateTime.now } ].to_json
-          response = double("Response", code: 200, body: json_response)
+          response = double("Response", code: "200", body: json_response)
           http_client_double = instance_double(HttpClient, get: response)
           allow(HttpClient).to receive(:new) { http_client_double }
           company_client = CompanyClient.new(company_code:  nil, access_key: nil)
@@ -43,7 +43,7 @@ module FlexitimeClient
       context "when the response is success" do
         it "returns an array on employee resources" do
           json_response = [ { first_name: "matt" } ].to_json
-          response = double("Response", code: 200, body: json_response)
+          response = double("Response", code: "200", body: json_response)
           http_client_double = instance_double(HttpClient, get: response)
           allow(HttpClient).to receive(:new) { http_client_double }
           company_client = CompanyClient.new(company_code: "code", access_key:"12345")

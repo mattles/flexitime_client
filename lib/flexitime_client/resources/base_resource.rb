@@ -13,9 +13,7 @@ module FlexitimeClient
         attr.each { |key,value | self.send("#{key}=", value)  }
       end
 
-
       private
-
 
       attr_reader :attributes
     end

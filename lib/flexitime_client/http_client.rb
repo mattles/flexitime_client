@@ -15,12 +15,8 @@ module FlexitimeClient
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Get.new(resource_request.path_with_params)
       http.use_ssl = true
-      request.basic_auth(
-        authorisation.username,
-        authorisation.password
-      )
-      response = http.request(request)
-      response.body
+      request.basic_auth(authorisation.username, authorisation.password)
+      http.request(request)
     end
 
     private

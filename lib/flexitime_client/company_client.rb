@@ -31,10 +31,10 @@ module FlexitimeClient
 
     attr_reader :company_authorisation, :http_client
 
-    private
+    private 
 
     def parse_response(response:)
-      return [] if response.code == 404
+      return [] if response.code.to_i == 404
       JSON.parse(response.body)
     end
   end
